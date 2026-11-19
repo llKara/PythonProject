@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Свежие фермерские продукты с предварительным заказом к дню привоза.">
+    <title>FermMarket - фермерские продукты</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{% url 'home' %}">
+                <span class="brand-name">FermMarket</span>
+                <span class="brand-caption">фермерские продукты</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Основная навигация">
+                <a href="{% url 'home' %}#catalog">Каталог</a>
+                <a href="{% url 'home' %}#how-it-works">Как это работает</a>
+                <a href="{% url 'home' %}#farms">Хозяйства</a>
+            </nav>
+
+            <form class="header-search" method="get" action="{% url 'home' %}">
+                <label class="visually-hidden" for="header-search-input">Поиск продуктов</label>
+                <span class="search-icon" aria-hidden="true"></span>
+                <input id="header-search-input" type="search" name="q" placeholder="Найти продукт">
+            </form>
+
+            <a class="user-role" href="{% url 'home' %}#login">Вход</a>
+            <a class="cart-link" href="{% url 'home' %}#catalog">Корзина</a>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <section class="hero" aria-labelledby="page-title">
+            <div class="hero-content">
+                <p class="eyebrow hero-eyebrow">Простое и честное фермерство</p>
+                <h1 id="page-title">Свежие продукты от местных фермеров</h1>
+                <p class="hero-description">Выбирайте товары из партий и оформляйте предзаказ к удобному дню привоза.</p>
+                <a class="primary-link" href="{% url 'home' %}#catalog">Перейти в каталог</a>
+            </div>
+            <div class="hero-picture">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=85" alt="Свежие овощи и продукты на фермерском рынке" fetchpriority="high">
+            </div>
+        </section>
+
+        <section class="categories-section" aria-labelledby="categories-title">
+            <h2 id="categories-title" class="section-title-small">Популярные категории</h2>
+            <div class="category-list">
+                <a class="category-pill" href="{% url 'home' %}#catalog">Молочная продукция</a>
+                <a class="category-pill" href="{% url 'home' %}#catalog">Сыры</a>
+                <a class="category-pill" href="{% url 'home' %}#catalog">Птица</a>
+                <a class="category-pill" href="{% url 'home' %}#catalog">Овощи</a>
+                <a class="category-pill" href="{% url 'home' %}#catalog">Выпечка</a>
+                <a class="category-pill" href="{% url 'home' %}#catalog">Другое</a>
+            </div>
+        </section>
+
+        <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Свежие товары от местных хозяйств</p>
+                    <h2 id="catalog-title">Каталог продуктов</h2>
+                </div>
+                <p class="section-note">Предзаказ к выбранному дню привоза</p>
+            </div>
+
+            <form class="catalog-tools" method="get" action="{% url 'home' %}">
+                <label class="catalog-search">
+                    <span class="search-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Поиск по названию</span>
+                    <input type="search" name="q" placeholder="Поиск по названию">
+                </label>
+                <label class="visually-hidden" for="farm-filter">Фермерское хозяйство</label>
+                <select id="farm-filter" name="farm">
+                    <option value="">Все хозяйства</option>
+                </select>
+                <label class="visually-hidden" for="stock-filter">Наличие в партии</label>
+                <select id="stock-filter" name="stock">
+                    <option value="">Наличие в партии</option>
+                </select>
+                <label class="visually-hidden" for="sort-filter">Сортировка товаров</label>
+                <select id="sort-filter" name="sort">
+                    <option value="price">Сортировка: по цене</option>
+                    <option value="name">По названию</option>
+                    <option value="arrival">По дате привоза</option>
+                </select>
+            </form>
+            <p class="catalog-hint">Другие варианты сортировки: по названию и дате привоза</p>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-image product-image-cheese"><img src="https://static.wixstatic.com/media/a7cfdb_0b70d4b91ce44b38b2c17985553fc579~mv2.jpg" alt="Сыр козий" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Сыры</div>
+                    <h3>Сыр козий</h3>
+                    <p class="product-farm">Сырная долина</p>
+                    <p class="product-price">1 150 ₽</p>
+                    <p class="product-stock">за кг / доступно 46 кг</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-milk"><img src="https://images.unsplash.com/photo-1567011345445-fd175f248019?auto=format&fit=crop&w=900&q=85" alt="Молоко" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Молочная продукция</div>
+                    <h3>Молоко фермерское</h3>
+                    <p class="product-farm">Усадьба Лесная</p>
+                    <p class="product-price">145 ₽</p>
+                    <p class="product-stock">за литр / доступно 60 л</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-potato"><img src="https://images.unsplash.com/photo-1742887205589-266ab1623152?auto=format&fit=crop&w=900&q=85" alt="Картофель" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Овощи</div>
+                    <h3>Картофель молодой</h3>
+                    <p class="product-farm">Огород у дома</p>
+                    <p class="product-price">85 ₽</p>
+                    <p class="product-stock">за кг / доступно 120 кг</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-chicken"><img src="https://images.unsplash.com/photo-1682991136736-a2b44623eeba?auto=format&fit=crop&w=900&q=85" alt="Курица" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Птица</div>
+                    <h3>Тушка цыплёнка</h3>
+                    <p class="product-farm">Птичий двор</p>
+                    <p class="product-price">390 ₽</p>
+                    <p class="product-stock">за кг / доступно 24 кг</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-bread"><img src="https://images.unsplash.com/photo-1723475762962-c1d3e957b313?auto=format&fit=crop&w=900&q=85" alt="Хлеб домашний" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Выпечка</div>
+                    <h3>Хлеб домашний</h3>
+                    <p class="product-farm">Тёплая печь</p>
+                    <p class="product-price">120 ₽</p>
+                    <p class="product-stock">за штуку / доступно 35 шт.</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-butter"><img src="https://images.unsplash.com/photo-1603596310923-dbb12732f9c7?auto=format&fit=crop&w=900&q=85" alt="Сливочное масло" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Молочная продукция</div>
+                    <h3>Масло сливочное</h3>
+                    <p class="product-farm">Усадьба Лесная</p>
+                    <p class="product-price">280 ₽</p>
+                    <p class="product-stock">за 200 г / доступно 20 шт.</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-honey"><img src="https://images.unsplash.com/photo-1568657704598-602700bd9694?auto=format&fit=crop&w=900&q=85" alt="Мёд" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Другое</div>
+                    <h3>Мёд липовый</h3>
+                    <p class="product-farm">Пасека у реки</p>
+                    <p class="product-price">650 ₽</p>
+                    <p class="product-stock">за банку / доступно 12 шт.</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image product-image-eggs"><img src="https://images.unsplash.com/photo-1718042245788-78c199683e7f?auto=format&fit=crop&w=900&q=85" alt="Яйца" loading="lazy" decoding="async"></div>
+                    <div class="product-category">Птица</div>
+                    <h3>Яйца деревенские</h3>
+                    <p class="product-farm">Птичий двор</p>
+                    <p class="product-price">150 ₽</p>
+                    <p class="product-stock">за 10 шт. / доступно 30 уп.</p>
+                    <a class="product-button" href="{% url 'home' %}#catalog">В корзину</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+            <h2 id="how-title">Как работает предзаказ</h2>
+            <div class="steps-grid">
+                <article class="step-item">
+                    <span class="step-number">01</span>
+                    <div>
+                        <h3>Выберите продукты</h3>
+                        <p>Смотрите наличие и лимиты партии.</p>
+                    </div>
+                </article>
+                <article class="step-item">
+                    <span class="step-number">02</span>
+                    <div>
+                        <h3>Выберите день привоза</h3>
+                        <p>Приём закрывается за 36 часов.</p>
+                    </div>
+                </article>
+                <article class="step-item">
+                    <span class="step-number">03</span>
+                    <div>
+                        <h3>Получите заказ</h3>
+                        <p>После сборки сумма уточняется по весу.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="farms-section" id="farms" aria-labelledby="farms-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Местные производители</p>
+                    <h2 id="farms-title">Наши хозяйства</h2>
+                </div>
+                <p class="section-note">Продукты от небольших фермерских хозяйств</p>
+            </div>
+            <div class="farms-list">
+                <article class="farm-item"><h3>Сырная долина</h3><p>Сыры и молочные продукты</p></article>
+                <article class="farm-item"><h3>Усадьба Лесная</h3><p>Молоко и сливочное масло</p></article>
+                <article class="farm-item"><h3>Огород у дома</h3><p>Свежие сезонные овощи</p></article>
+                <article class="farm-item"><h3>Птичий двор</h3><p>Птица и деревенские яйца</p></article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-name">FermMarket</span>
+                <span class="brand-caption">фермерские продукты</span>
+            </div>
+            <nav class="footer-nav" aria-label="Навигация в подвале">
+                <a href="{% url 'home' %}#catalog">Каталог</a>
+                <a href="{% url 'home' %}#how-it-works">О сервисе</a>
+                <a href="{% url 'home' %}#farms">Хозяйства</a>
+            </nav>
+            <p class="copyright">FermMarket, 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
